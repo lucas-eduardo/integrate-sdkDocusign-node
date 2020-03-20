@@ -9,24 +9,11 @@ class EnvelopeController {
     const apiClient = await docusignClient();
     Docusign.Configuration.default.setDefaultApiClient(apiClient);
 
-    const {
-      contract,
-      email,
-      name,
-      fieldsContractor,
-      fieldsHired,
-      fieldsService,
-    } = req.body;
+    const { contract, email, name, fields } = req.body;
 
-    const obj = {
-      email,
-      name,
-      fieldsContractor,
-      fieldsHired,
-      fieldsService,
-    };
+    const obj = { response: res, email, name, fields };
 
-    const { envelopeDefinition } = new contracts[contract](obj);
+    const envelopeDefinition = await new contracts[contract](obj);
 
     const envelopesApi = new Docusign.EnvelopesApi();
 
