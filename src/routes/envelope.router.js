@@ -1,5 +1,6 @@
 import { Router } from 'express';
 
+import envelopeValidator from '../app/validators/envelope.validator';
 import envelopeController from '../app/controllers/envelope.controller';
 
 class EnvelopeRouter {
@@ -10,7 +11,9 @@ class EnvelopeRouter {
   }
 
   setRoutes() {
-    this.router.route('/envelope').post(envelopeController.store);
+    this.router
+      .route('/envelope')
+      .post(envelopeValidator, envelopeController.store);
   }
 }
 
