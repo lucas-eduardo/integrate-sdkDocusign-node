@@ -5,9 +5,10 @@ module.exports = {
   },
   extends: [
     'airbnb-base',
-    'prettier'
+    'prettier',
+    'plugin:jest/recommended'
   ],
-  plugins: ['prettier'],
+  plugins: ['prettier', 'jest'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
