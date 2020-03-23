@@ -4,7 +4,9 @@
 
 - **[Configuraçãos](#configurando)**
 
-- **[Executar projeto localmente](#rodando-o-projeto-localmente)**
+- **[Rodando o projeto localmente](#rodando-o-projeto-localmente)**
+
+- **[Executando os testes](#executando-os-testes)**
 
 - **[Buildar o projeto para produção](#buildando-o-projeto-para-produção)**
 
@@ -63,6 +65,14 @@ PASSWORD = ''
 
 Seguindo esses passos, o seu projeto estará rodando no http://localhost:3333
 
+### Executando os testes
+
+Os testes de integração foram feitos utilizando o Jest e trazendo um report com o coverage. Todos os métodos que são de libs externas (no momento apenas a docusign), esta sendo feito o mock do mesmo, para testarmos 100% do nosso código, pois bibliotecas externas acaba saindo da nossa responsabilidade. Para rodar o teste, basta seguir os passos abaixo:
+
+- `yarn install`
+
+- `yarn test`
+
 ### Buildando o projeto para produção
 
 - `yarn build`
@@ -119,3 +129,6 @@ Após acessar a url, será pedido a autenticação para a conta da docusign e de
 Após a conclusão da aplicação, é necessário pedir a revisão da chave de integração, para isso basta acessar o painel administrativo, **API e chaves** e clique no botão **AÇÕES** da chave de integração, então basta clicar em **Enviar revisão** e escolher uma data. Dentro de alguns minutos será retornado uma resposta se foi aprovado ou não.
 
 Para a aprovação, é necessário ter no minimo 20 requests com a chave de integração ao qual esta sendo pedido a revisão, e possuir um intervalo de tempo de pelo menos 20 segundos.
+
+
+<a href="./.github/schemaInsomnia.json">Link do schema do Insomnia</a>
