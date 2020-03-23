@@ -4,10 +4,13 @@
     ".editorconfig": true,
     ".eslintrc.js": true,
     ".prettierrc": true,
+    "jest.config.js": true,
+    "babel.config.js": true,
+    "nodemon.json": true,
     "yarn.lock": true
   },
   "breadcrumbs.enabled": true,
-  "editor.fontFamily": "Fira Code",
+  "editor.fontFamily": "Fira Code, Consolas, monospace",
   "editor.fontSize": 12,
   "editor.fontLigatures": true,
   "editor.rulers": [
