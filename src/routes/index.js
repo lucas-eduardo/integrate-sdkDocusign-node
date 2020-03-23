@@ -1,5 +1,3 @@
-/* eslint-disable global-require */
-/* eslint-disable import/no-dynamic-require */
 import { Router } from 'express';
 import { readdirSync } from 'fs';
 import { basename, resolve } from 'path';
@@ -15,7 +13,8 @@ const initialize = () => {
         file.slice(-3) === '.js'
     )
     .forEach(file => {
-      const fileRouter = require(resolve(__dirname, file));
+      const pathFile = resolve(__dirname, file);
+      const fileRouter = require(pathFile);
       route.use(fileRouter.default);
     });
 
