@@ -1,7 +1,24 @@
+import { formatISO, addDays } from 'date-fns';
 import instanceApi from '../libs/docusignInstanceApi.lib';
 import contracts from '../contracts';
 
 class EnvelopeController {
+  async index(req, res) {
+    const envelopesApi = await instanceApi({ api: 'EnvelopesApi' });
+
+    const result = await envelopesApi.listStatusChanges(
+      process.env.ACCOUNT_ID,
+      {
+        fromDate: formatISO(addDays(new Date(), -30)),
+        toDate: formatISO(addDays(new Date(), 1)),
+        userId: process.env.USER_ID,
+        status: 'sent, delivered',
+      }
+    );
+
+    return res.json(result);
+  }
+
   async store(req, res) {
     const envelopesApi = await instanceApi({ api: 'EnvelopesApi' });
 
