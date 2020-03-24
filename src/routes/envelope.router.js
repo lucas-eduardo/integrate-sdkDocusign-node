@@ -13,6 +13,7 @@ class EnvelopeRouter {
   setRoutes() {
     this.router
       .route('/envelope')
+      .get(envelopeController.index)
       .post(envelopeValidator, envelopeController.store);
   }
 }

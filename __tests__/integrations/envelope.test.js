@@ -11,6 +11,9 @@ jest.mock('../../src/app/libs/docusignInstanceApi.lib', () => {
       statusDateTime: '2020-03-23T00:54:06.3454913Z',
       uri: '/envelopes/337573bc-56fe-49a3-9915-ea4998bf9d0a',
     }),
+    listStatusChanges: jest.fn().mockReturnValue({
+      envelopes: [],
+    }),
   });
 });
 
@@ -170,6 +173,17 @@ describe('Envelope', () => {
 
       expect(status).toBe(400);
       expect(body).toHaveProperty('error');
+    });
+  });
+
+  describe('Index', () => {
+    it('accessing the endpoint, I need to return the docusign envelopes', async () => {
+      const { body, status } = await request(app)
+        .get('/envelope')
+        .send();
+
+      expect(status).toBe(200);
+      expect(body).toHaveProperty('envelopes');
     });
   });
 });
