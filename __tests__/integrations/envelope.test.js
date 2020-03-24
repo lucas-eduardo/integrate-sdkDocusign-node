@@ -185,5 +185,59 @@ describe('Envelope', () => {
       expect(status).toBe(200);
       expect(body).toHaveProperty('envelopes');
     });
+
+    it('perform a filter of the last 2 months, you must return the data', async () => {
+      const { body, status } = await request(app)
+        .get('/envelope?periodMonth=2')
+        .send();
+
+      expect(status).toBe(200);
+      expect(body).toHaveProperty('envelopes');
+    });
+
+    it('perform filter of the last 2 days, you must return the data', async () => {
+      const { body, status } = await request(app)
+        .get('/envelope?periodDay=2')
+        .send();
+
+      expect(status).toBe(200);
+      expect(body).toHaveProperty('envelopes');
+    });
+
+    it('perform a filter of the last 24 hours, you must return the data', async () => {
+      const { body, status } = await request(app)
+        .get('/envelope?periodHour=24')
+        .send();
+
+      expect(status).toBe(200);
+      expect(body).toHaveProperty('envelopes');
+    });
+
+    it('perform filter in a valid time interval, you must return the data', async () => {
+      const { body, status } = await request(app)
+        .get('/envelope?customDate=1584966560%3B1585052960')
+        .send();
+
+      expect(status).toBe(200);
+      expect(body).toHaveProperty('envelopes');
+    });
+
+    it('perform filter in an invalid time interval, you should not return the data', async () => {
+      const { body, status } = await request(app)
+        .get('/envelope?customDate=1585398560%3B1585052960')
+        .send();
+
+      expect(status).toBe(400);
+      expect(body).toHaveProperty('error');
+    });
+
+    it('perform filter by recipient, must return data', async () => {
+      const { body, status } = await request(app)
+        .get('/envelope?search=Theo')
+        .send();
+
+      expect(status).toBe(200);
+      expect(body).toHaveProperty('envelopes');
+    });
   });
 });
